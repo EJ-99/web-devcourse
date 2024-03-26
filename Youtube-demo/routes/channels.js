@@ -1,18 +1,17 @@
 const express = require('express');
-const app = express();
-app.listen(1234);
-app.use(express.json());
+const router = express.Router();
+router.use(express.json());
 
 const db = new Map();
 let id = 1;
 
-app
-  .route('/channels')
+router
+  .route('/')
   .post((req, res) => {
     // 개별 채널 생성
-    const { channelTitle } = req.body;
+    const { channelTitle, userId } = req.body;
 
-    if (!channelTitle) {
+    if (!channelTitle || !userId) {
       return res
         .status(400)
         .json({ message: '요청 데이터가 잘못 되었습니다.' });
@@ -25,20 +24,28 @@ app
   })
   .get((req, res) => {
     // 전체 채널 조회
+    const { userId } = req.body;
+
+    if (!userId) {
+      return res.status(404).json({ message: '로그인이 필요한 페이지입니다.' });
+    }
+
     const channels = [];
-    db.forEach((channel, key) => {
-      channels.push(channel);
+    db.forEach((channel) => {
+      if (channel.userId === userId) {
+        channels.push(channel);
+      }
     });
 
     if (channels.length) {
       return res.status(200).json(channels);
     }
 
-    res.status(404).json({ message: '아직 채널이 없습니다' });
+    notFoundChannel(res, '아직 채널이 없습니다.');
   });
 
-app
-  .route('/channels/:id')
+router
+  .route('/:id')
   .put((req, res) => {
     // 개별 채널 수정
     const channelId = parseInt(req.params.id);
@@ -47,7 +54,7 @@ app
     const oldTitle = channel?.channelTitle;
 
     if (!channel) {
-      return res.status(404).json({ message: '존재하지 않는 채널입니다.' });
+      return notFoundChannel(res, '존재하지 않는 채널입니다.');
     }
 
     if (!newTitle) {
@@ -68,7 +75,7 @@ app
     const channel = db.get(channelId);
 
     if (!channel) {
-      return res.status(404).json({ message: '존재하지 않는 채널입니다.' });
+      return notFoundChannel(res, '존재하지 않는 채널입니다.');
     }
 
     db.delete(channelId);
@@ -82,8 +89,14 @@ app
     const channel = db.get(channelId);
 
     if (!channel) {
-      return res.status(404).json({ message: '존재하지 않는 채널입니다.' });
+      return notFoundChannel(res, '존재하지 않는 채널입니다.');
     }
 
     res.status(200).json(channel);
   });
+
+function notFoundChannel(res, message) {
+  return res.status(404).json({ message });
+}
+
+module.exports = router;
