@@ -58,3 +58,37 @@ export const buttons = style({
   marginTop: 'auto',
   paddingLeft: vars.spacing.big2,
 });
+
+export const deleteBoardButton = style({
+  border: 'none',
+  borderRadius: 5,
+  width: 'max-content',
+  marginBottom: 30,
+  fontSize: vars.fontSizing.T4,
+  padding: vars.spacing.big2,
+  backgroundColor: vars.color.main,
+  cursor: 'pointer',
+  opacity: 0.6,
+  minWidth: 150,
+  ':hover': {
+    opacity: 0.8,
+  },
+});
+
+export const loggerButton = style({
+  border: 'none',
+  borderRadius: 5,
+  width: 'max-content',
+  marginLeft: 15,
+  marginRight: 30,
+  marginBottom: 30,
+  fontSize: vars.fontSizing.T4,
+  padding: vars.spacing.big2,
+  backgroundColor: vars.color.main,
+  cursor: 'pointer',
+  opacity: 0.6,
+  minWidth: 150,
+  ':hover': {
+    opacity: 0.8,
+  },
+});
