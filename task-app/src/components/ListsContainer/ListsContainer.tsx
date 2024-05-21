@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import List from '../List/List';
 import { IList } from '../../types';
 import ActionButton from '../ActionButton/ActionButton';

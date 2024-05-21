@@ -1,6 +1,5 @@
 import { style } from '@vanilla-extract/css';
 import { vars } from '../../App.css';
-import { SiCalendly } from 'react-icons/si';
 
 export const container = style({
   display: 'flex',

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { IList, ITask } from '../../types';
 import { GrSubtract } from 'react-icons/gr';
 import Task from '../Task/Task';
@@ -9,7 +9,7 @@ import { addLog } from '../../store/slices/loggerSlice';
 import { v4 } from 'uuid';
 import { setModalData } from '../../store/slices/modalSlice';
 import { deleteButton, header, listWrapper, name } from './List.css';
-import { Droppable } from 'react-beautiful-dnd';
+import { Droppable } from '@hello-pangea/dnd';
 
 type TListProps = {
   list: IList;
@@ -57,7 +57,6 @@ const List: FC<TListProps> = ({ list, boardId }) => {
               <Task
                 taskName={task.taskName}
                 taskDescription={task.taskDescription}
-                boardId={boardId}
                 id={task.taskId}
                 index={index}
               />
