@@ -9,9 +9,9 @@ export default function Header() {
 }
 
 const HeaderStyle = styled.header`
-  background-color: #333;
+  background-color: ${(props) => props.theme.color.background};
 
   h1 {
-    color: white;
+    color: ${({ theme }) => theme.color.primary};
   }
 `;
