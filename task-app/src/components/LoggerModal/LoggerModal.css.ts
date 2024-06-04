@@ -2,18 +2,16 @@ import { style } from '@vanilla-extract/css';
 import { vars } from '../../App.css';
 
 export const wrapper = style({
-  // width: '100vw',
-  // height: '100vh',
-  left: '50%',
-  top: '50%',
-  transform: 'translate(-50%, -50%)',
+  width: '100vw',
+  height: '100vh',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  position: 'absolute',
+  position: 'fixed',
 });
 
 export const modalWindow = style({
+  zIndex: 10000,
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',

@@ -14,7 +14,7 @@ import LoggerModal from './components/LoggerModal/LoggerModal';
 import { deleteBoard, sort } from './store/slices/boardSlice';
 import { addLog } from './store/slices/loggerSlice';
 import { v4 } from 'uuid';
-import { DragDropContext } from '@hello-pangea/dnd';
+import { DragDropContext, DropResult } from '@hello-pangea/dnd';
 
 function App() {
   const dispatch = useTypedDispatch();
@@ -54,7 +54,7 @@ function App() {
     return indexToBeDeleted === 0 ? indexToBeDeleted + 1 : 0;
   };
 
-  const handleDragEnd = (result) => {
+  const handleDragEnd = (result: DropResult) => {
     const { draggableId, destination, source } = result;
 
     const [sourceList] = lists.filter(
@@ -107,6 +107,7 @@ function App() {
           <ListsContainer lists={lists} boardId={activeBoard.boardId} />
         </DragDropContext>
       </div>
+
       <div className={buttons}>
         <button className={deleteBoardButton} onClick={handleDeleteBoard}>
           이 게시판 삭제하기

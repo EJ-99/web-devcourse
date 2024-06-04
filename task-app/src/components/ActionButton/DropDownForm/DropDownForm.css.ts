@@ -14,10 +14,10 @@ export const taskForm = style({
 export const listForm = style({
   display: 'flex',
   flexDirection: 'column',
+  height: 'max-content',
+  width: 'max-content',
   marginRight: vars.spacing.listSpacing,
   padding: vars.spacing.big2,
-  width: 'max-content',
-  height: 'max-content',
   borderRadius: 20,
   backgroundColor: vars.color.list,
 });
