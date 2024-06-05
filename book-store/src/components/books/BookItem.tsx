@@ -5,6 +5,7 @@ import { getImgSrc } from '../../utils/image';
 import { formatNumber } from '../../utils/format';
 import { FaHeart } from 'react-icons/fa';
 import { ViewMode } from './BooksViewSwitcher';
+import { Link } from 'react-router-dom';
 
 interface Props {
   book: Book;
@@ -14,28 +15,34 @@ interface Props {
 export default function BookItem({ book, view }: Props) {
   return (
     <BooksItemStyle view={view}>
-      <div className='img'>
-        <img src={getImgSrc(book.img)} alt={book.title} />
-      </div>
-      <div className='content'>
-        <h2 className='title'>{book.title}</h2>
-        <p className='summary'>{book.summary}</p>
-        <p className='author'>{book.author}</p>
-        <p className='price'>{formatNumber(book.price)}원</p>
-        <div className='likes'>
-          <FaHeart />
-          <span>{book.likes}</span>
+      <Link to={`/book/${book.id}`}>
+        <div className='img'>
+          <img src={getImgSrc(book.img)} alt={book.title} />
         </div>
-      </div>
+        <div className='content'>
+          <h2 className='title'>{book.title}</h2>
+          <p className='summary'>{book.summary}</p>
+          <p className='author'>{book.author}</p>
+          <p className='price'>{formatNumber(book.price)}원</p>
+          <div className='likes'>
+            <FaHeart />
+            <span>{book.likes}</span>
+          </div>
+        </div>
+      </Link>
     </BooksItemStyle>
   );
 }
 
 const BooksItemStyle = styled.div<Pick<Props, 'view'>>`
-  height: 100%;
-  display: flex;
-  flex-direction: ${({ view }) => (view === 'grid' ? 'column' : 'row')};
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  a {
+    height: 100%;
+    display: flex;
+    flex-direction: ${({ view }) => (view === 'grid' ? 'column' : 'row')};
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+  }
+
   .img {
     border-radius: ${({ theme }) => theme.borderRadius.default};
     overflow: hidden;
