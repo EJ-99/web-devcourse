@@ -4,6 +4,7 @@ import { FaSignInAlt, FaRegUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useCategory } from '../../hooks/useCategory';
 import { useAuthStore } from '../../store/authStore';
+import { QUERYSTRING } from '../../constants/querystring';
 
 export default function Header() {
   const { category } = useCategory();
@@ -23,7 +24,9 @@ export default function Header() {
             <li key={item.id}>
               <Link
                 to={`/books${
-                  item.id === null ? '' : `?category_id=${item.id}`
+                  item.id === null
+                    ? `?${QUERYSTRING.VIEW}=grid`
+                    : `?${QUERYSTRING.CATEGORY_ID}=${item.id}&${QUERYSTRING.VIEW}=grid`
                 }`}>
                 {item.name}
               </Link>

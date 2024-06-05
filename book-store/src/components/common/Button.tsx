@@ -16,13 +16,15 @@ export default function Button({
   scheme,
   disabled,
   isLoading,
+  ...props
 }: Props) {
   return (
     <ButtonStyle
       size={size}
       scheme={scheme}
       disabled={disabled}
-      isLoading={isLoading}>
+      isLoading={isLoading}
+      {...props}>
       {children}
     </ButtonStyle>
   );
