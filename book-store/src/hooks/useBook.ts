@@ -12,6 +12,12 @@ export const useBook = (bookId: string | undefined) => {
   const { showAlert } = useAlert();
 
   const addToCart = (quantity: number) => {
+    //권한 확인
+    if (!isLoggedIn) {
+      showAlert('로그인이 필요한 기능입니다.');
+      return;
+    }
+
     if (!book) return;
 
     addCart({
