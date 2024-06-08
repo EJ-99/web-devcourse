@@ -4,7 +4,7 @@ import { Cart } from '../../models/cart.model';
 import Button from '../common/Button';
 import Title from '../common/Title';
 import { formatNumber } from '../../utils/format';
-import CheckIconButton from './CheckIconButton';
+import CheckIconButton from '../common/CheckIconButton';
 import { useAlert } from '../../hooks/useAlert';
 
 interface Props {
