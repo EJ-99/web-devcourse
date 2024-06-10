@@ -1,5 +1,5 @@
 export interface Order {
-  orderId: number;
+  id: number;
   orderedAt: string;
   address: string;
   receiver: string;
@@ -15,4 +15,16 @@ export interface OrderSheet {
   totalPrice: number;
   firstBookTitle: string;
   deliveryId: number;
+}
+
+export interface OrderDetailItem {
+  bookId: number;
+  author: string;
+  price: number;
+  quantity: number;
+  title: string;
+}
+
+export interface OrderListItem extends Order {
+  detail?: OrderDetailItem[];
 }
