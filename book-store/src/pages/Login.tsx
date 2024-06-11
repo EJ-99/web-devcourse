@@ -2,35 +2,24 @@ import React from 'react';
 import Title from '../components/common/Title';
 import InputText from '../components/common/InputText';
 import Button from '../components/common/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { useAlert } from '../hooks/useAlert';
-import { SignupProps, SignupStyle } from './Signup';
-import { login } from '../api/auth.api';
-import { useAuthStore } from '../store/authStore';
+
+import { LoginProps, SignupStyle } from './Signup';
+
+import { useAuth } from '@/hooks/useAuth';
 
 export default function Login() {
-  const navigate = useNavigate();
-  const { showAlert } = useAlert();
+  const { userLogin } = useAuth();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignupProps>();
+  } = useForm<LoginProps>();
 
-  const { storeLogin } = useAuthStore();
-
-  const onSubmit = (data: SignupProps) => {
-    login(data)
-      .then((res) => {
-        storeLogin(res.token);
-
-        showAlert('로그인 완료되었습니다.');
-        navigate('/');
-      })
-      .catch(() => {
-        showAlert('이메일 혹은 패스워드가 일치하지 않습니다.');
-      });
+  const onSubmit = (data: LoginProps) => {
+    userLogin(data);
   };
 
   return (
