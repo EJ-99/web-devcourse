@@ -1,4 +1,3 @@
-import React from 'react';
 import Title from '@/components/common/Title';
 import styled from 'styled-components';
 import BooksFilter from '@/components/books/BooksFilter';
@@ -7,9 +6,18 @@ import BooksEmpty from '@/components/books/BooksEmpty';
 import Pagination from '@/components/books/Pagination';
 import BooksViewSwitcher from '@/components/books/BooksViewSwitcher';
 import { useBooks } from '@/hooks/useBooks';
+import Loading from '@/components/common/Loading';
 
 export default function Books() {
   const { books, pagination, isEmpty, isBooksLoading } = useBooks();
+
+  if (isEmpty) {
+    return <BooksEmpty />;
+  }
+
+  if (!books || !pagination || isBooksLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
@@ -19,9 +27,8 @@ export default function Books() {
           <BooksFilter />
           <BooksViewSwitcher />
         </div>
-        {books && !isEmpty && <BooksList books={books} />}
-        {isEmpty && <BooksEmpty />}
-        {pagination && !isEmpty && <Pagination pagination={pagination} />}
+        {books && <BooksList books={books} />}
+        {pagination && <Pagination pagination={pagination} />}
       </BooksStyle>
     </>
   );
