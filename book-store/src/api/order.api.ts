@@ -2,7 +2,11 @@ import { Order, OrderDetailItem, OrderSheet } from '@/models/order.model';
 import { requestHandler } from '@/api/http';
 
 export const order = async (orderData: OrderSheet) => {
-  return await requestHandler<OrderSheet>('post', './orders', orderData);
+  return await requestHandler<undefined, OrderSheet>(
+    'post',
+    './orders',
+    orderData
+  );
 };
 
 export const fetchOrders = async () => {
