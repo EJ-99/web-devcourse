@@ -11,6 +11,7 @@ import EllipsisBox from '../components/common/EllipsisBox';
 import LikeButton from '../components/book/LikeButton';
 import AddToCart from '../components/book/AddToCart';
 import BookReview from '@/components/book/BookReview';
+import { Tab, Tabs } from '@/components/common/Tabs';
 
 const bookInfoList = [
   {
@@ -84,14 +85,22 @@ export default function BookDetail() {
         </div>
       </header>
       <div className='content'>
-        <Title size='medium'>상세 설명</Title>
-        <EllipsisBox linelimit={4}>{book.detail}</EllipsisBox>
-
-        <Title size='medium'>목차</Title>
-        <EllipsisBox linelimit={2}>{book.contents}</EllipsisBox>
-
-        <Title size='medium'>리뷰</Title>
-        <BookReview reviews={reviews} onAdd={addReview} />
+        <Tabs>
+          <Tab title='상세 설명'>
+            <Title size='medium'>상세 설명</Title>
+            <EllipsisBox linelimit={4}>{book.detail}</EllipsisBox>
+          </Tab>
+          <Tab title='목차'>
+            {' '}
+            <Title size='medium'>목차</Title>
+            <EllipsisBox linelimit={2}>{book.contents}</EllipsisBox>
+          </Tab>
+          <Tab title='리뷰'>
+            {' '}
+            <Title size='medium'>리뷰</Title>
+            <BookReview reviews={reviews} onAdd={addReview} />
+          </Tab>
+        </Tabs>
       </div>
     </BookDetailStyle>
   );
@@ -130,8 +139,5 @@ const BookDetailStyle = styled.div`
         }
       }
     }
-  }
-
-  .content {
   }
 `;
