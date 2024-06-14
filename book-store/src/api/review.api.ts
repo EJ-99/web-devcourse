@@ -19,3 +19,7 @@ export const addBookReview = async (
     data
   );
 };
+
+export const fetchReviewAll = async () => {
+  return await requestHandler<BookReviewItem[]>('get', '/reviews');
+};
