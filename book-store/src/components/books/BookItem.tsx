@@ -34,7 +34,7 @@ export default function BookItem({ book, view }: Props) {
   );
 }
 
-const BooksItemStyle = styled.div<Pick<Props, 'view'>>`
+export const BooksItemStyle = styled.div<Pick<Props, 'view'>>`
   a {
     height: 100%;
     display: flex;
