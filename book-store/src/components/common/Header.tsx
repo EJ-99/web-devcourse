@@ -132,7 +132,7 @@ const HeaderStyle = styled.header`
           display: flex;
           align-items: center;
           justify-content: center;
-          width: max-content;
+          width: 100%;
           line-height: 1.5;
           background: none;
           border: 0;
